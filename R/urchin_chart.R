@@ -17,8 +17,8 @@ chart(data = urchin, height ~ weight) +
 
 # Nuage de points de la hauteur en fonction de la masse des oursins
 # en utilisant une transformation `log()` pour les 2 variables.
-chart(data = ___, ___ ~ ___) +
-  ___
+chart(data = urchin, log(height) ~ log(weight)) +
+  geom_point()
 
 # Nuage de points de la hauteur en fonction de la masse des oursins
 # en tenant compte de leur origine.
