@@ -1,0 +1,65 @@
+---
+title: "Biométrie des oursins violets"
+author: "___"
+date: "`r Sys.Date()`"
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    toc: true
+editor: visual
+lang: fr
+---
+
+<!--# Ce document est un carnet de notes. C'est l'équivalent d'un cahier de laboratoire pour vos analyses de données. Vous allez y consigner toutes les analyses que vous avez réalisées et leurs interprétations dans l'ordre de votre progression. Il se différencie des documents de présentation des résultats (rapport, présentation avec dias, article scientifique, ouvrage plus conséquent) par son style bref et informel. Dans les documents de présentation, les résultats les plus pertinents sont choisis alors que le carnet de notes reprend tout ce qui a été fait pour garder une trace du raisonnement complet qui a mené à l'analyse. Un carnet de notes commence toujours pour une brève introduction de quelques lignes qui présente le sujet étudié. -->
+
+## Introduction et but
+
+Deux populations de *Paracentrotus lividus* (Lamarck, 1816) sont comparées sur base de mesures biométriques. La première est pêchée en Bretagne et la seconde est élevée dans une ferme aquacole en Normandie. L'un des intérêts pour cette espèce d'échinoderme est gastronomique. En effet, les gonades des oursins sont consommées dans plusieurs pays, dont la France et le Japon.
+
+Ce carnet de notes a pour but de visualiser les associations entre les différentes mesures réalisées.
+
+## Matériel et méthodes
+
+<!--# Dans un bloc-notes, la section matériel et méthodes peut être succincte et renvoyer, par exemple, à un cahier de laboratoire pour les détails, ou à un lien pour des données ouvertes (le DOI est un lien fiable, lorsqu'il existe). Précisez toujours les analyses statistiques et les logiciels utilisés, y compris leurs versions. Attention : RStudio n'est "que" l'éditeur, le logiciel qui fait les calculs est R ! -->
+
+Les données sont rendues publiques sous licence GPL-2 via le package [{data.io}](https://www.sciviews.org/data.io/)**.** Les métadonnées (dont une description de chaque variable du jeu de données) sont disponibles dans la page d'aide du jeu de données `?urchin_bio`.
+
+L'analyse est réalisée avec la [SciViews Box 2024](https://www.sciviews.org/software/svbox/) dans [Saturn Cloud](https://saturncloud.io) (Linux) avec le [logiciel R](https://www.r-project.org) (`r R.version.string`).
+
+## Analyses
+
+```{r setup, include=FALSE}
+# Configuration de l'environnement
+SciViews::R(lang = "fr")
+```
+
+<!--# Le chunk ci-dessous permet d'importer les données. La fonction `read()` importe le tableau `urchin_bio` depuis le package {data.io}. Ce tableau est ensuite assigné à `urchin`, ce qui signifie qu'il est désormais accessible sous ce nom. La fonction `smutate()` permet de calculer de nouvelles variables. Les fonctions `read()` et `smutate()` seront présentées en détail dans le module 5 du cours. -->
+
+```{r import, record='RODFS', object='urchin'}
+# Importation des données
+urchin <- read("urchin_bio", package = "data.io")
+# Conversion de la variable `maturity` en variable facteur ordonné
+# Calcul d'une nouvelle variable nommée `diameter`
+urchin <- smutate(urchin, 
+  maturity = factor(maturity, ordered = TRUE),
+  diameter = (diameter1 + diameter2)/2)
+# Ajout de labels et d'unités aux variables
+urchin <- labelise(urchin, 
+  label = list(
+  maturity = "Index de maturité gonadique",
+  diameter = "Diamètre moyen du test"),
+  units = list(
+    diameter = "mm")
+  )
+```
+
+### Description des données
+
+On dénombre 421 observations et 20 variables. Ces variables sont de trois types : (1) les variables relatives à la taille des oursins, (2) les variables de masses et enfin (3) les variables qualitatives (sexe, origine, index de maturité gonadique).
+
+<!--% Réalisez un nuage de points de la hauteur en fonction de la masse des oursins. Vous avez déjà réalisé ce graphique dans votre script R (c'est le même qui est demandé ici). -->
+
+```{r chart1}
+
+```
