@@ -12,7 +12,7 @@ urchin <- read("urchin_bio", package = "data.io")
 # Étape 2 : Graphiques en nuage de points ---------------------------------
 
 # Nuage de points de la hauteur en fonction de la masse des oursins
-chart(data = ___, ___ ~ ___) +
+chart(data = urchin, height ~ weight) +
   geom_point()
 
 # Nuage de points de la hauteur en fonction de la masse des oursins
