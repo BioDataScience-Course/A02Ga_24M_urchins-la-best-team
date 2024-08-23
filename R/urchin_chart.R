@@ -22,8 +22,8 @@ chart(data = urchin, log(height) ~ log(weight)) +
 
 # Nuage de points de la hauteur en fonction de la masse des oursins
 # en tenant compte de leur origine.
-chart(data = ___, ___ ~ ___) +
-  ___
+chart(data = urchin, height ~ weight %col=% origin) +
+  geom_point()
 
 # Nettoyage de l'environnement.
 rm(urchin)
