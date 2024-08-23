@@ -61,5 +61,6 @@ On dénombre 421 observations et 20 variables. Ces variables sont de trois types
 <!--% Réalisez un nuage de points de la hauteur en fonction de la masse des oursins. Vous avez déjà réalisé ce graphique dans votre script R (c'est le même qui est demandé ici). -->
 
 ```{r chart1}
-
+chart(data = urchin, height ~ weight) +
+  geom_point()
 ```
